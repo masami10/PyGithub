@@ -50,6 +50,7 @@ __all__ = [
     "RateLimitExceededException",
     "TwoFactorException",
     "UnknownObjectException",
+    "Package"
 ]
 
 import logging
