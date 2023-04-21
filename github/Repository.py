@@ -3267,6 +3267,19 @@ class Repository(github.GithubObject.CompletableGithubObject):
             list_item="workflow_runs",
         )
 
+    def del_workflow_run(self, id_):
+        """
+        :calls: `DEL /repos/{owner}/{repo}/actions/runs/{run_id} <https://docs.github.com/en/rest/reference/actions#workflow-runs>`_
+        :param id_: int
+
+        :rtype: :class:`github.WorkflowRun.WorkflowRun`
+        """
+        assert isinstance(id_, int)
+        status, _, _ = self._requester.requestJson(
+            "DELETE", f"{self.url}/actions/runs/{id_}"
+        )
+        return status == 204
+
     def get_workflow_run(self, id_):
         """
         :calls: `GET /repos/{owner}/{repo}/actions/runs/{run_id} <https://docs.github.com/en/rest/reference/actions#workflow-runs>`_
